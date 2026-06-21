@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>DeepShield</h1>
+        <p class="subtitle">
+            Upload a video to check if it's real or a deepfake.
+        </p>
+
+        <form action="/predict"
+        method="POST"
+        enctype="multipart/form-data">
+
+            <label for="file-upload" class="upload-box" id="upload-area">
+                <div class="upload-content" id="upload-content">
+                <img src="https://cdn-icons-png.flaticon.com/512/716/716784.png"class="upload-icon">
+                <p>Click to upload a video</p>
+                </div>
+                <img id="image-preview">
+                <video id="video-preview" controls></video>
+            </label>
+
+            <input
+                type="file"
+                id="file-upload"
+                name="file"
+                hidden
+                required>
+            
+            <button type="submit" class="btn">
+                Scan
+            </button>
+
+            <div class="bottom-box"></div>
+        </form>
+    </div>
+
+<script>
+
+const fileInput = document.getElementById("file-upload");
+const uploadBox = document.querySelector(".upload-box");
+const uploadContent = document.getElementById("upload-content");
+const imagePreview = document.getElementById("image-preview");
+const videoPreview = document.getElementById("video-preview");
+
+fileInput.addEventListener("change", function(){
+    const file = this.files[0];
+    if(file){
+        const fileURL =
+        URL.createObjectURL(file);
+        uploadContent.style.display = "none";
+        uploadBox.style.border = "none";
+        uploadBox.style.background = "transparent";
+        uploadBox.style.padding = "0";
+
+        if(file.type.startsWith("image")){
+            imagePreview.src = fileURL;
+            imagePreview.style.display = "block";
+            videoPreview.style.display = "none";
+        }
+        else if(file.type.startsWith("video")){
+            videoPreview.src = fileURL;
+            videoPreview.style.display = "block";
+            imagePreview.style.display = "none";
+        }
+    }
+});
+
+</script>
+</body>
+</html>

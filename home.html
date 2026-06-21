@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"href="{{ url_for('static', filename='style2.css') }}">
+
+    <title>DeepShield</title>
+
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="left-section">
+
+            <h1>DeepShield</h1>
+
+            <h2>
+                AI-Powered Deepfake Detection System
+            </h2>
+
+            <p>
+            DeepShield is an intelligent platform developed to
+            detect manipulated images and videos using deep learning.
+            The system analyzes uploaded media content and predicts
+            whether it is real or fake using AI-based detection model.
+            <br><br>
+
+            The project supports both image and video analysis
+            and provides quick and efficient prediction results.
+
+            </p>
+
+        </div>
+
+<!-- RIGHT -->
+    <div class="right-section">
+
+        <h3>Start Detection</h3>
+
+        <a href="/image" class="btn">
+               Image Detection
+        </a>
+        <a href="/video" class="btn">
+               Video Detection
+        </a>
+
+    </div>
+</body>
+</html>
